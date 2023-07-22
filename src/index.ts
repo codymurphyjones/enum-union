@@ -177,6 +177,34 @@ export function Enum<N extends number, T extends string>(
   firstOrConfig: N,
   ...items: T[]
 ): [OmitType<EnumFromStrings<T[], N>>, EnumFromStrings<T[], N>];
+export function Enum<T extends string>(
+  firstOrConfig: "lowercase",
+  ...items: T[]
+): [
+  OmitType<EnumConfiguration<T, "lowercase">>,
+  EnumConfiguration<T, "lowercase">
+];
+export function Enum<T extends string>(
+  firstOrConfig: "uppercase",
+  ...items: T[]
+): [
+  OmitType<EnumConfiguration<T, "uppercase">>,
+  EnumConfiguration<T, "uppercase">
+];
+export function Enum<T extends string>(
+  firstOrConfig: "capitalize",
+  ...items: T[]
+): [
+  OmitType<EnumConfiguration<T, "capitalize">>,
+  EnumConfiguration<T, "capitalize">
+];
+export function Enum<T extends string>(
+  firstOrConfig: "uncapitalize",
+  ...items: T[]
+): [
+  OmitType<EnumConfiguration<T, "uncapitalize">>,
+  EnumConfiguration<T, "uncapitalize">
+];
 export function Enum<N extends number, T extends string>(
   firstOrConfig: T,
   ...items: T[]
@@ -212,3 +240,7 @@ export function Enum<N extends number, T extends string, D extends Record<string
     return makeEnumString(configValue, ...itemList);
   }
 }
+
+export type ExtractEnumType<T> = Enum<T>;
+export const makeEnum = Enum;
+

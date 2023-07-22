@@ -1,6 +1,6 @@
 {
   "name": "enum-unions",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Declarative TypeScript library for generating flexible enums and union types with advanced configuration options.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -12,9 +12,9 @@
     "build": "tsc"
   },
   "bugs": {
-    "url": "https://github.com/codymurphyjones/react-validation-strategy/issues"
+    "url": "https://github.com/codymurphyjones/enum-unions/issues"
   },
-  "homepage": "https://github.com/codymurphyjones/react-validation-strategy",
+  "homepage": "https://github.com/codymurphyjones/enum-unions",
   "author": "Cody Jones <codymurphyjones@gmail.com> (https://github.com/codymurphyjones)",
   "license": "ISC",
   "devDependencies": {
