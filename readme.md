@@ -120,7 +120,7 @@ The `enum-unions` library provides a powerful and flexible alternative to TypeSc
 ## Advanced Usage
 The `Enum` function supports several configuration options for creating more complex enums.
 
-#### Casing Styles
+### Casing Styles
 You can create enums with different casing styles by passing a configuration option as the first argument to the Enum function. The available options are `"lowercase", "uppercase", "capitalize", and "uncapitalize"`. Here are some examples:
 
 ```ts
@@ -136,7 +136,7 @@ const [CapitalizeRoles, capitalizeRoles] = Enum("capitalize", "user", "admin", "
 const [UncapitalizeRoles, uncapitalizeRoles] = Enum("uncapitalize", "User", "Admin", "Owner"); 
 //{ User: "user", Admin: "admin", Owner: "owner" }
 ```
-## Number-Based Enums
+### Number-Based Enums
 You can also create number-based enums by passing a number as the first argument to the Enum function. The number specifies the length of the enum, and the rest of the arguments are the enum values. Here's an example:
 
 ```ts
@@ -146,7 +146,7 @@ export type NumRoles = Enum<typeof numRoles>; // 0, 1, 2
 
 In this example, `NumRoles` is an object of keys with number values associated to them, and `numRoles` is an object to extract the union type of those keys values.
 
-## Enums from Object Types
+### Enums from Object Types
 You can create enums from object types by passing an object as the first argument to the `Enum` function. The object's keys are the enum keys, and the object's values are the enum values. Here's an example:
 
 ```ts
