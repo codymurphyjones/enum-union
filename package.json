@@ -1,6 +1,6 @@
 {
   "name": "enum-unions",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "TypeScript library that offers a flexible and declarative way to generate advanced enums and union types, supporting different casing styles, number-based enums, and enums from object types, enhancing type safety in TypeScript projects.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
