@@ -1,6 +1,6 @@
 {
   "name": "enum-unions",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Declarative TypeScript library for generating flexible enums and union types with advanced configuration options.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

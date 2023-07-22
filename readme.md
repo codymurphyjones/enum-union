@@ -378,8 +378,8 @@ export  const [Roles, roles] =  Enum(
 	"User",
 	"Admin",
 	"Owner"
-); // Type: "USER", "ADMIN", "OWNER"
-export  type  RolesType =  Enum<typeof  roles>; // Type: "user", "admin", "owner"
+); // { User: 'USER', Admin: 'ADMIN', Owner: 'OWNER' }
+export  type  RolesType =  Enum<typeof  roles>; // Type: "USER", "ADMIN", "OWNER"
 ```
 *Capitalize:*
 ```ts
@@ -388,8 +388,8 @@ export  const [Roles, roles] =  Enum(
 	"user",
 	"admin",
 	"owner"
-); // Type: "User", "Admin", "Owner"
-export  type  RolesType =  Enum<typeof  roles>; // Type: "user", "admin", "owner"
+); // { user: 'User', admin: 'Admin', owner: 'Owner' }
+export  type  RolesType =  Enum<typeof  roles>; // Type: "User", "Admin", "Owner"
 ```
 *Uncapitalize:*
 ```ts
@@ -398,7 +398,7 @@ export  const [Roles, roles] =  Enum(
 	"User",
 	"Admin",
 	"Owner"
-); // Type: "user", "admin", "owner"
+); // { User: 'user', Admin: 'admin', Owner: 'owner' }
 export  type  RolesType =  Enum<typeof  roles>; // Type: "user", "admin", "owner"
 ```
 
