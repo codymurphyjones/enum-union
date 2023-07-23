@@ -247,3 +247,19 @@ export function Enum<N extends number, T extends string, D extends Record<string
 
 export type ExtractEnumType<T> = Enum<T>;
 export const makeEnum = Enum;
+
+export function enumKeys<T extends ReturnType<typeof Enum>[0]>(enumObj: T): (keyof T)[] {
+  const keys: (keyof T)[] = [];
+  Object.keys(enumObj).forEach((item) => keys.push(item as keyof T));
+  return keys;
+}
+
+
+export function enumKeyByVal<T extends ReturnType<typeof Enum>[0]>(enumObj: T, val: T[keyof T]): keyof T {
+  let key: keyof T | undefined;
+  enumKeys(enumObj).forEach(item => {
+    if(val === enumObj[item])
+      key = item;
+  })
+  return key as keyof T;
+}

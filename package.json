@@ -12,9 +12,9 @@
     "build": "tsc"
   },
   "bugs": {
-    "url": "https://github.com/codymurphyjones/enum-unions/issues"
+    "url": "https://github.com/codymurphyjones/enum-union/issues"
   },
-  "homepage": "https://github.com/codymurphyjones/enum-unions",
+  "homepage": "https://github.com/codymurphyjones/enum-union",
   "author": "Cody Jones <codymurphyjones@gmail.com> (https://github.com/codymurphyjones)",
   "license": "ISC",
   "devDependencies": {

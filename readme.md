@@ -1,5 +1,5 @@
-# Enum Unions
-`enum-unions` is a TypeScript library that provides a declarative way to generate flexible enums and union types with advanced configuration options. It allows you to create enums with different casing styles, number-based enums, and even enums from object types, all while providing enhanced type safety with TypeScript.
+# Enum Union
+`enum-union` is a TypeScript library that provides a declarative way to generate flexible enums and union types with advanced configuration options. It allows you to create enums with different casing styles, number-based enums, and even enums from object types, all while providing enhanced type safety with TypeScript.
 
 ### Table of Contents
 - [Installation](#installation)
@@ -27,11 +27,11 @@
 
 <a name="installation"></a>
 ## Installation
-To install typescript-enum-unions via npm, run:
+To install typescript-enum-union via npm, run:
 
 ```
-npm install enum-unions
-yarn add enum-unions
+npm install enum-union
+yarn add enum-union
 ```
 <a name="getting-started"></a>
 
@@ -39,7 +39,7 @@ yarn add enum-unions
 First, you need to import the Enum function from the library.
 
 ```ts
-import { Enum } from "enum-unions";
+import { Enum } from "enum-union";
 ```
 Then, you can create an enum using the `Enum` function.  The enum function will return a tuple of 2 objects unless the object passed in is a `const object` instead of a collection of keys.
 
@@ -94,28 +94,30 @@ enum Role {
 
 In this example, `Role` is an enum with the keys `User`, `Admin`, and `Owner`, and the values `'USER'`, `'ADMIN'`, and `'OWNER'`.
 
-**enum-unions**
+**enum-union**
 
-The `enum-unions` library provides a more flexible and configurable way to create enums and union types in TypeScript. Here's an example of an enum created with `enum-unions`:
+The `enum-union` library provides a more flexible and configurable way to create enums and union types in TypeScript. Here's an example of the same enum created with `enum-union`:
 
 ```ts
-const [Roles, roles] = Enum("User", "Admin", "Owner");
+const [Roles, roles] = Enum("uppercase", "User", "Admin", "Owner");
 ```
 
 In this example, `Roles` is an enum created with the keys and values of `"User", "Admin", "Owner"`.
 
 **Comparison**
+###### Enum Object Shape
+![enum-unions console log vs enum console log](https://i.imgur.com/RK5LiZg.png)
 
--   **Flexibility**: The `enum-unions` library provides more flexibility than TypeScript's native `enum`. It allows you to create enums with different casing styles, number-based enums, and even enums from object types. This can be particularly useful in more complex applications where you need more control over your enums.
+-   **Flexibility**: The `enum-union` library provides more flexibility than TypeScript's native `enum`. It allows you to create enums with different casing styles, number-based enums, and even enums from object types. This can be particularly useful in more complex applications where you need more control over your enums.
     
--   **Type Safety**: Both TypeScript `enum` and `enum-unions` provide type safety, ensuring that you can only assign valid values to your enums. However, `enum-unions` goes a step further by providing enhanced type safety with TypeScript, allowing you to create union types from your enums.
+-   **Type Safety**: Both TypeScript `enum` and `enum-union` provide type safety, ensuring that you can only assign valid values to your enums. However, `enum-union` goes a step further by providing enhanced type safety with TypeScript, allowing you to create union types from your enums.
     
--   **Configuration**: The `enum-unions` library provides advanced configuration options, allowing you to customize your enums to suit your needs. This is not possible with TypeScript's native `enum`.
+-   **Configuration**: The `enum-union` library provides advanced configuration options, allowing you to customize your enums to suit your needs. This is not possible with TypeScript's native `enum`.
     
--   **Ease of Use**: TypeScript's native `enum` is simpler and easier to use, especially for beginners or developers who are not familiar with TypeScript's advanced type features. The `enum-unions` library, on the other hand, has a learning curve and may require some time to understand and use effectively.
+-   **Ease of Use**: TypeScript's native `enum` is simpler and easier to use, especially for beginners or developers who are not familiar with TypeScript's advanced type features. The `enum-union` library, on the other hand, has a learning curve and may require some time to understand and use effectively.
     
 
-The `enum-unions` library provides a powerful and flexible alternative to TypeScript's native `enum`. It's a great tool for developers who need more control and customization over their enums. However, it does come with a learning curve and may not be necessary for simpler applications or projects.
+The `enum-union` library provides a powerful and flexible alternative to TypeScript's native `enum`. It's a great tool for developers who need more control and customization over their enums. However, it does come with a learning curve and may not be necessary for simpler applications or projects.
 
 ## Advanced Usage
 The `Enum` function supports several configuration options for creating more complex enums.
@@ -167,8 +169,22 @@ type NumType = Enum<typeof NumType>; // 2 | 10 | 23
 ```
 
 ## API Reference
+#### Helper Functions
+**`enumKeys`**
+A drop in replacement for Object.keys in relation to `enum-union` types.  Object.keys provides a type of `string` when using it on an object, but with enumKeys the array will be typed to the exact type of each key relevant to your enum.
+```ts
+function enumKeys<T extends ReturnType<typeof Enum>[0]>(enumObj: T): (keyof T)[]
+```
+enumKeys receives an object return type from the `Enum` or `makeEnum` function and then converts all `string` keys to `keyof T`.
 
-#### `Enum` Function
+**`enumKeyByVal`**
+Allows you to convert a value of a enum into the enums key value like a reverse look up
+```ts
+function enumKeyByVal<T extends ReturnType<typeof Enum>[0]>(enumObj: T, val: T[keyof T]): keyof T
+```
+This likely only works when the value of val is hard coded rather than dynamic due to the limitations of typescript.  We can explore this further if the need for a dynamic runtime conversion is needed.
+
+#### `Enum` Function.
 The `Enum` function is the primary interface for creating enums. It accepts a variable number of arguments and returns an enum. The first argument determines the type of enum to create:
 
 
@@ -317,11 +333,11 @@ export  function  Enum<
 
 **alias**
 ```ts
-import { Enum } from "enum-unions";
+import { Enum } from "enum-union";
 ```
 or
 ```ts
-import { makeEnum } from "enum-unions";
+import { makeEnum } from "enum-union";
 ```
 
 Alias is provided because some developers prefer that their types and objects do not share names.
@@ -332,7 +348,7 @@ The `Enum` type is a utility type that extracts the enum values from an enum obj
 <a name="extract-const-obj"></a>
 #### 1. Extracting Type From const object
 
-**`const object`** is the one unique input value for `enum-unions` because unlike every other variation of the `Enum` function, this type does not return a tuple.  It just returns a read only object that can be extracted into a usable type with the `type Enum` effect.
+**`const object`** is the one unique input value for `enum-union` because unlike every other variation of the `Enum` function, this type does not return a tuple.  It just returns a read only object that can be extracted into a usable type with the `type Enum` effect.
 ```ts
 const  ObjectType  =  Enum({
 	User:  "user-type",
@@ -407,21 +423,24 @@ export  type  RolesType =  Enum<typeof  roles>; // Type: "user", "admin", "owner
 **alias**
 
 ```ts
-import { Enum } from "enum-unions";
+import { Enum } from "enum-union";
 // or
-import { type ExtractEnumType } from "enum-unions";
+import { type ExtractEnumType } from "enum-union";
 ```
 
 Alias is provided because some developers prefer that their types and objects do not share names.
 
 ### Conclusion
 
-The `enum-unions` library is a powerful tool for TypeScript developers, offering a flexible and declarative way to generate enums and union types. It provides a variety of advanced configuration options, allowing you to create enums with different casing styles, number-based enums, and even enums from object types. This makes it an invaluable tool for enhancing type safety in your TypeScript projects.
+The `enum-union` library is a powerful tool for TypeScript developers, offering a flexible and declarative way to generate enums and union types. It provides a variety of advanced configuration options, allowing you to create enums with different casing styles, number-based enums, and even enums from object types. This makes it an invaluable tool for enhancing type safety in your TypeScript projects.
 
-Compared to TypeScript's native `enum` type, `enum-unions` offers more flexibility and advanced configuration options. It allows you to create union types from your enums, providing an extra layer of type safety. It also supports several configuration options for creating more complex enums, including different casing styles, number-based enums, and enums from object types.
+Compared to TypeScript's native `enum` type, `enum-union` offers more flexibility and advanced configuration options. It allows you to create union types from your enums, providing an extra layer of type safety. It also supports several configuration options for creating more complex enums, including different casing styles, number-based enums, and enums from object types.
 
 Despite some sacrifices in terms of developer experience due to TypeScript's limitations, the library's benefits far outweigh these trade-offs. The `Enum` function's support for several configuration options allows for the creation of more complex enums, and the utility type `Enum` extracts the enum values from an enum object, supporting all the enum types that can be created with the `Enum` function.
 
-The `enum-unions` library is a great addition to any TypeScript developer's toolbox. It's a powerful tool for developers who need more flexibility and control over enums and union types in TypeScript.
+The `enum-union` library is a great addition to any TypeScript developer's toolbox. It's a powerful tool for developers who need more flexibility and control over enums and union types in TypeScript.
 
 If you've got any thoughts, issues, or ideas for making it better, drop a note on our GitHub repo. Remember, it's all about making things better together.
+
+
+
